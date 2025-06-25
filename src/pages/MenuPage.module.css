@@ -1,0 +1,8 @@
+.menuWrapper {
+    background: #605858;
+    color: #fff;
+}
+
+.selected {
+    background-color: rgba(255, 255, 255, 0.2);
+}
