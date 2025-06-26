@@ -3,10 +3,19 @@ header {
 }
 
 .cartLink {
-    background: #F4F3F1F0;
+    background: #eee;
     border-radius: 4px;
     padding: 17px 16px 16px 16px;
     position: relative;
+}
+
+.backLink {
+    padding: 12px 0 12px;
+}
+
+.backLink img {
+    width: 40px;
+    height: auto;
 }
 
 .cartTotal {

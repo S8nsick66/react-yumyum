@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { data } from "../services/data";
 import type { CartItem, OrderState } from "../types/types";
+import { clearCartState } from "./cartSlice";
+import { clearReceiptState } from "./receiptSlice";
 
 export const getOrderItems = (cart: CartItem[]): number[]  => {
     const orderItems: number[] = [];
@@ -23,6 +25,23 @@ export const fetchOrder = createAsyncThunk(
     'order/fetch',
     async (orderId: string) => {
         return await data.getOrder(orderId);
+    }
+);
+
+/*
+    * Starts a new order by clearing the cart, order, and receipt states and localStorage.
+ */
+export const startNewOrder = createAsyncThunk(
+    'order/startNew',
+    async (orderId: string, { dispatch }) => {
+        data.clearOrder(orderId);
+        data.clearReceipt(orderId);
+        data.clearCart();
+        dispatch(clearOrderState());
+        dispatch(clearReceiptState());
+        dispatch(clearCartState());
+        // Give Redux time to clear the state before proceeding
+        await new Promise((res) => setTimeout(res, 0));
     }
 );
 
@@ -66,7 +85,13 @@ export const orderSlice = createSlice({
             .addCase(fetchOrder.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isError = false;
+
+                // Replace order in state with the fetched order from API
                 state.order = action.payload;
+                if (state.order) {
+                    // Save order in local storage for persistence
+                    data.saveOrder(state.order);
+                }
             })
             .addCase(fetchOrder.rejected, (state) => {
                 state.isLoading = false;
@@ -75,7 +100,15 @@ export const orderSlice = createSlice({
             });
     },
     reducers: {
+        clearOrderState: (state) => {
+            // Resets the state to initial values
+            state.order = null;
+            state.isLoading = false;
+            state.isError = false;
+        }
     },
 });
+
+export const { clearOrderState } = orderSlice.actions;
 
 export const orderReducer = orderSlice.reducer;

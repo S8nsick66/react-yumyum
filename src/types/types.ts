@@ -61,13 +61,19 @@ export type CartState = {
     totalCost: number;
 };
 
+export interface ReceiptItem {
+    id: number;
+    name: string;
+    price: number;
+    quantity: number;
+    type: MenuCategory;
+}
+
 export interface ReceiptType {
     id: string;
-    items: MenuType[];
+    items: ReceiptItem[];
     orderValue: number;
-    eta: string;
     timestamp: string;
-    state: string;
 }
 
 export type ReceiptState = {

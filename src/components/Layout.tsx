@@ -9,10 +9,13 @@ export function Layout() {
         // Set different body classes based on path
         // to have different backgrounds for different pages
         document.body.className = "";
-        if (location.pathname === "/cart") {
+        const pathparts = location.pathname.slice(1).split("/");
+        if (pathparts[0] === "cart") {
             document.body.classList.add("body-cart");
-        } else if (location.pathname === "/order") {
+        } else if (pathparts[0] === "order") {
             document.body.classList.add("body-order");
+        } else if (pathparts[0] === "receipt") {
+            document.body.classList.add("body-receipt");
         } else if (location.pathname === "/") {
             document.body.classList.add("body-menu");
         } else {

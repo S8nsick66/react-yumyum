@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { data } from "../services/data";
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { fetchMenu } from "../slices/menuSlice";
 import { addToCart, isInCart, quantityInCart } from "../slices/cartSlice";
@@ -13,17 +12,21 @@ export function MenuPage() {
     const { menuGrouped, isLoading, isError } = useAppSelector(state => state.menu);
     const cartState = useAppSelector(state => state.cart);
 
-    const handleAddToCart = (menuitem: MenuType) => {
-        dispatch(addToCart(menuitem));
+    const handleAddToCart = (item: MenuType) => {
+        dispatch(addToCart(item));
     };
 
     useEffect(() => {
         dispatch(fetchMenu());
     }, [dispatch]);
 
-    useEffect(() => {
-        data.saveCart(cartState);
-    }, [cartState]);
+    /*useEffect(() => {
+        if (cartState.cart.length > 0) {
+            data.saveCart(cartState);
+        } else {
+            data.clearCart();
+        }
+    }, [cartState.cart.length]);*/
 
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Something went wrong</div>;

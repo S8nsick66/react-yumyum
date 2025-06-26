@@ -44,7 +44,11 @@ body.body-cart {
 }
 
 body.body-order {
-  background: red;
+  background: #605858;
+}
+
+body.body-receipt {
+  background: #605858;
 }
 
 #root {

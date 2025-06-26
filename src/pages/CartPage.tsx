@@ -1,10 +1,10 @@
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useEffect } from "react";
-import {NavLink, useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { fetchMenu } from "../slices/menuSlice";
-import { getCartExpanded, removeFromCart } from "../slices/cartSlice";
+import { getCartExpanded, removeFromCart} from "../slices/cartSlice";
 import { sendOrder } from "../slices/orderSlice";
-import type {CartItem} from "../types/types";
+import type { CartItem } from "../types/types";
 import style from './CartPage.module.css';
 
 export function CartPage() {
@@ -35,9 +35,6 @@ export function CartPage() {
     return cartState.cart.length === 0 ? (
             <div className="text-center">
                 <p>Din varukorg är tom.</p>
-                <button>
-                    <NavLink to="/">Tillbaks till menyn</NavLink>
-                </button>
             </div>
         ) : (
         <>

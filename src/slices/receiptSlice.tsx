@@ -16,7 +16,7 @@ const initialState: ReceiptState = {
 };
 
 export const receiptSlice = createSlice({
-    name: "order",
+    name: "receipt",
     initialState,
     extraReducers: (builder) => {
         builder
@@ -29,6 +29,9 @@ export const receiptSlice = createSlice({
                 state.isError = false;
                 // Save order in state so we can use it on CartPage to redirect to /order/:id
                 state.receipt = action.payload;
+                if (state.receipt) {
+                    data.saveReceipt(state.receipt);
+                }
             })
             .addCase(fetchReceipt.rejected, (state) => {
                 state.isLoading = false;
@@ -37,7 +40,15 @@ export const receiptSlice = createSlice({
             })
     },
     reducers: {
+        clearReceiptState: (state) => {
+            // Resets the state to initial values
+            state.receipt = null;
+            state.isLoading = false;
+            state.isError = false;
+        }
     },
 });
+
+export const { clearReceiptState } = receiptSlice.actions;
 
 export const receiptReducer = receiptSlice.reducer;
