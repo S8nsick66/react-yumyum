@@ -32,7 +32,7 @@ body {
 }
 
 body.body-menu {
-  background: #8ed8bf url("/bg.png") no-repeat center center;
+  background: #8ed8bf url('/bg.png') no-repeat center center;
   background-size: cover;
 }
 body.body-cart {

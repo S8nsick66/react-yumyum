@@ -23,11 +23,11 @@ export function Header() {
     return (
         <header className="flex justify-between items-baseline">
             {showLogo() && (
-                <img src="/logo_white.svg" width="64" height="64" />
+                <img src={`${import.meta.env.BASE_URL}logo_white.svg`} width="64" height="64" />
             )}
             {showBackIcon() && (
                 <NavLink to="/" className={style.backLink}>
-                    <img src="/caret-left.svg" width="64" height="64" />
+                    <img src={`${import.meta.env.BASE_URL}caret-left.svg`} width="64" height="64" />
                 </NavLink>
             )}
             {showCartIcon() && (
@@ -35,7 +35,7 @@ export function Header() {
                     {cartState.totalQuantity > 0 && (
                         <span className={style.cartTotal}>{cartState.totalQuantity}</span>
                     )}
-                    <img src="/cart.svg" width="32" height="31" />
+                    <img src={`${import.meta.env.BASE_URL}cart.svg`} width="32" height="31" />
                 </NavLink>
             )}
         </header>

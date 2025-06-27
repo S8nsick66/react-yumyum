@@ -7,7 +7,7 @@ import { ReceiptPage } from "../pages/ReceiptPage";
 import { ErrorPage } from "../pages/ErrorPage";
 
 // Prefix each route with /react in production to work on GitHub Pages
-const basename = import.meta.env.PROD ? '/react' : '/';
+const basename = import.meta.env.PROD ? '/react-yumyum' : '/';
 
 export const router = createBrowserRouter(
     [

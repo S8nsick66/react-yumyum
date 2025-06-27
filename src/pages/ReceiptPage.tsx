@@ -28,7 +28,7 @@ export function ReceiptPage() {
                 <div className={style.receiptWrapper}>
                     <div className="p-[16px]">
                         <div className="text-center">
-                            <img src="/logo.svg" className="inline-block mt-[16px] mb-[10px]"/>
+                            <img src={`${import.meta.env.BASE_URL}logo.svg`} className="inline-block mt-[16px] mb-[10px]"/>
                             <h3 className="text-2xl">Kvitto</h3>
                             <div className="text-xs">
                                 #{receipt.id}

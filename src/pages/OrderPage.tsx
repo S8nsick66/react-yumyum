@@ -29,7 +29,7 @@ export function OrderPage() {
     return (
         <>
             <div className="text-center flex-grow">
-                <img src="/box.png" width="390" height="362" />
+                <img src={`${import.meta.env.BASE_URL}box.png`} width="390" height="362" />
                 {remainingTime >= 0 ? (
                     <div className="px-[16px]">
                         <h2 className="text-32">Dina wontons tillagas!</h2>
