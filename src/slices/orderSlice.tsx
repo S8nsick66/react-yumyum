@@ -17,7 +17,6 @@ export const getOrderItems = (cart: CartItem[]): number[]  => {
 export const sendOrder = createAsyncThunk(
     'order/send',
     async (cart: CartItem[], { dispatch }) => {
-        console.log('order/send');
         const cartOrder = getOrderItems(cart);
         data.clearCart();
         dispatch(clearCartState());
@@ -36,7 +35,6 @@ export const fetchOrder = createAsyncThunk(
 export const startNewOrder = createAsyncThunk(
     'order/startNew',
     async (orderId: string, { dispatch }) => {
-        console.log('order/startNew');
         data.clearOrder(orderId);
         data.clearReceipt(orderId);
         dispatch(clearOrderState());
@@ -102,7 +100,6 @@ export const orderSlice = createSlice({
     },
     reducers: {
         clearOrderState: (state) => {
-            console.log('clearOrderState');
             // Resets the state to initial values
             state.order = null;
             state.isLoading = false;

@@ -41,7 +41,6 @@ export const receiptSlice = createSlice({
     },
     reducers: {
         clearReceiptState: (state) => {
-            console.log('clearReceiptState');
             // Resets the state to initial values
             state.receipt = null;
             state.isLoading = false;

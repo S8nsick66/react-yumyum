@@ -33,7 +33,7 @@ export function CartPage() {
     }, [isError, order]);
 
     return cartState.cart.length === 0 ? (
-            <div className="text-center">
+            <div className={`text-center ${style.cartWrapper}`}>
                 <p>Din varukorg är tom.</p>
             </div>
         ) : (

@@ -42,6 +42,10 @@ export const quantityInCart = (cart: CartItem[], itemId: number): number => {
     return 0;
 };
 
+// Take each item in the cart and find its corresponding menu item.
+// Since the cart only contains item IDs and quantities,
+// but we need the show name, price, and total cost,
+// on the cart page.
 export const getCartExpanded = createSelector(
     [
         (state: RootState) => state.cart.cart,
@@ -55,11 +59,7 @@ export const getCartExpanded = createSelector(
             MENU_TYPES.map(type => [type, []])
         ) as unknown as CartExpanded;
 
-        // Take each item in the cart and find its corresponding menu item.
-        // Since the cart only contains item IDs and quantities,
-        // but we need the show name, price, and total cost,
-        // on the cart page.
-        // We also group them by type here.
+        // Group them by type here
         cart.forEach(cartItem => {
             const menuItem = menu.menu.find(item => item.id === cartItem.id);
             if (menuItem) {
@@ -109,7 +109,6 @@ export const cartSlice = createSlice({
             state.totalCost -= action.payload.price;
         },
         clearCartState: (state) => {
-            console.log('Clearing cart state');
             // Resets the state to initial values
             state.cart = [];
             state.totalQuantity = 0;
