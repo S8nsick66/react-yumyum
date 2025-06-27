@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
 import { data } from "../services/data";
-import type {CartItem, CartState, CartExpanded, MenuType} from "../types/types";
-import { MENU_TYPES } from "../types/types";
 import type { RootState } from "../store/store";
+import type { CartItem, CartState, CartExpanded, MenuType } from "../types/types";
+import { MENU_TYPES } from "../types/types";
 
 const initialState: CartState = data.getCart() ?? {
     cart: [],
@@ -28,10 +28,12 @@ export const removeFromCart = createAsyncThunk(
     }
 );
 
+// Check if an item is in the cart
 export const isInCart = (cart: CartItem[], itemId: number): boolean => {
     return cart.findIndex(item => item.id === itemId) > -1;
 };
 
+// Get number of items in the cart for a specific item ID
 export const quantityInCart = (cart: CartItem[], itemId: number): number => {
     const existingIndex = cart.findIndex(item => item.id === itemId);
     if (existingIndex > -1) {
@@ -107,6 +109,7 @@ export const cartSlice = createSlice({
             state.totalCost -= action.payload.price;
         },
         clearCartState: (state) => {
+            console.log('Clearing cart state');
             // Resets the state to initial values
             state.cart = [];
             state.totalQuantity = 0;

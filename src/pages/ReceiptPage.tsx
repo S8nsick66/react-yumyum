@@ -1,6 +1,6 @@
-import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { fetchReceipt } from "../slices/receiptSlice";
 import style from './ReceiptPage.module.css';
 import {NewOrder} from "../components/Button/NewOrder.tsx";
@@ -26,9 +26,7 @@ export function ReceiptPage() {
         }
     }, [cart.length]);
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+    if (isLoading) return <div className="loadingOverlay">Loading...</div>;
 
     if (isError || !receipt) {
         return <div>Something went wrong. Please try again.</div>;
@@ -36,23 +34,41 @@ export function ReceiptPage() {
 
     return (
         <>
-            <div className={style.receiptWrapper}>
-                <img src="/images/logo.svg"/>
-                <h2>Kvitto</h2>
-                <div>
-                    #{ receipt.id }
-                </div>
-                <div>
-                    {receipt.items.map((item) => (
-                        <div key={item.id}>
-                            <div>{item.name}</div>
-                            <div>{item.price} SEK</div>
-                            <div>{item.quantity}</div>
+            <div className="flex-grow flex flex-col">
+                <div className={style.receiptWrapper}>
+                    <div className="p-[16px]">
+                        <div className="text-center">
+                            <img src="/logo.svg" className="inline-block mt-[16px] mb-[10px]"/>
+                            <h3 className="text-2xl">Kvitto</h3>
+                            <div className="text-xs">
+                                #{receipt.id}
+                            </div>
                         </div>
-                    ))}
+                        <div>
+                            {receipt.items.map((item) => (
+                                <div className="mt-[10px]">
+                                    <div key={item.id} className="flex pt-[8px]">
+                                        <h4>{item.name}</h4>
+                                        <div className="flex-grow menuItemBorder"></div>
+                                        <div>{item.price} SEK</div>
+                                    </div>
+                                    <div className="text-xs font-normal lowercase">{item.quantity} stycken</div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="flex justify-between align-start p-[16px] totalWrapper">
+                        <div>
+                            <div>Totalt</div>
+                            <div className="text-xs">inkl. 20% moms</div>
+                        </div>
+                        <div className="text-2xl">
+                            {receipt.orderValue} SEK
+                        </div>
+                    </div>
                 </div>
             </div>
-            <NewOrder orderId={receipt.id} />
+            <NewOrder orderId={receipt.id}/>
         </>
     )
 }

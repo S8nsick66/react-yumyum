@@ -1,3 +1,6 @@
 .receiptWrapper {
-    background: #fff;
+    color: #353131;
+    background: #eee;
+    border-radius: 4px;
+    box-shadow: 0 0 16px 0 #00000029;
 }

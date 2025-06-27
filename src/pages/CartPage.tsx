@@ -51,11 +51,13 @@ export function CartPage() {
                 <div className="dottedBorder"></div>
                 <div className="dottedBorder"></div>
             </div>
-            <div className={`flex justify-between align-start p-[16px] ${style.totalWrapper}`}>
+            <div className="flex justify-between align-start p-[16px] text-32 totalWrapper">
                 <div className="text-header">Totalt</div>
                 <div>{cartState.totalCost} SEK</div>
             </div>
-            <button type="button" onClick={handleSendOrder} className={`text-2xl p-[24px]`}>Take my money!</button>
+            <button type="button" onClick={handleSendOrder} className={`text-2xl p-[24px]`}>
+                Take my money!
+            </button>
         </>
     )
 }

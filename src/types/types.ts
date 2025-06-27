@@ -82,3 +82,15 @@ export type ReceiptState = {
     isLoading: boolean;
     isError: boolean;
 };
+
+export interface ApiMenuResponse {
+    items: MenuType[];
+}
+
+export interface ApiOrderResponse {
+    order: OrderType;
+}
+
+export interface ApiReceiptResponse {
+    receipt: ReceiptType;
+}

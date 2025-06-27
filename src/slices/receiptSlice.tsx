@@ -27,7 +27,7 @@ export const receiptSlice = createSlice({
             .addCase(fetchReceipt.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isError = false;
-                // Save order in state so we can use it on CartPage to redirect to /order/:id
+                // Save receipt in state so we can use it on CartPage to redirect to /order/:id
                 state.receipt = action.payload;
                 if (state.receipt) {
                     data.saveReceipt(state.receipt);
@@ -41,6 +41,7 @@ export const receiptSlice = createSlice({
     },
     reducers: {
         clearReceiptState: (state) => {
+            console.log('clearReceiptState');
             // Resets the state to initial values
             state.receipt = null;
             state.isLoading = false;

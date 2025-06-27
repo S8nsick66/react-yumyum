@@ -2,7 +2,7 @@
 
 :root {
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 700;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -32,7 +32,7 @@ body {
 }
 
 body.body-menu {
-  background: #8ed8bf url("/images/bg.png") no-repeat center center;
+  background: #8ed8bf url("/bg.png") no-repeat center center;
   background-size: cover;
 }
 body.body-cart {
@@ -49,22 +49,6 @@ body.body-receipt {
   width: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.fira-sans-regular {
-  font-family: "Fira Sans", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-.fira-sans-medium {
-  font-family: "Fira Sans", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
-.fira-sans-bold {
-  font-family: "Fira Sans", sans-serif;
-  font-weight: 700;
-  font-style: normal;
 }
 
 .text-32 {
@@ -85,15 +69,6 @@ body.body-receipt {
 
 h2, .text-header {
   font-size: 22px;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
 button {
@@ -136,6 +111,13 @@ button a {
   margin-right: 10px;
   border-bottom-width: 2px;
   border-bottom-style: dotted;
+}
+
+.totalWrapper {
+  color: #353131;
+  background: #c2c1c1;
+  line-height: 1;
+  border-radius: 4px;
 }
 
 .dottedBorder {

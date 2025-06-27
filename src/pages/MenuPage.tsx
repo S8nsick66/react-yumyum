@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { fetchMenu } from "../slices/menuSlice";
 import { addToCart, isInCart, quantityInCart } from "../slices/cartSlice";
+import { MenuItemHeader } from "../components/MenuItem/MenuItemHeader";
 import { MenuItemSingle } from "../components/MenuItem/MenuItemSingle";
 import { MenuItemMultiple } from "../components/MenuItem/MenuItemMultiple";
 import styles from './MenuPage.module.css';
@@ -12,23 +13,15 @@ export function MenuPage() {
     const { menuGrouped, isLoading, isError } = useAppSelector(state => state.menu);
     const cartState = useAppSelector(state => state.cart);
 
-    const handleAddToCart = (item: MenuType) => {
-        dispatch(addToCart(item));
-    };
-
     useEffect(() => {
         dispatch(fetchMenu());
     }, [dispatch]);
 
-    /*useEffect(() => {
-        if (cartState.cart.length > 0) {
-            data.saveCart(cartState);
-        } else {
-            data.clearCart();
-        }
-    }, [cartState.cart.length]);*/
+    const handleAddToCart = (item: MenuType) => {
+        dispatch(addToCart(item));
+    };
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <div className="loadingOverlay">Loading...</div>;
     if (isError) return <div>Something went wrong</div>;
 
     return (
@@ -51,13 +44,9 @@ export function MenuPage() {
                 </section>
                 {menuGrouped.dip?.length > 0 && (
                     <div className={styles.menuItem}>
-                        <div className={`flex justify-between mb-[8px] ${styles.menuItemHeader}`}>
-                            <h2 className="">Dippsås</h2>
-                            <div className={`flex-grow ${styles.menuItemBorder}`}></div>
-                            <div>{menuGrouped.dip[0].price} SEK</div>
-                            {/* Assume all cost the same */}
-                        </div>
-                        <ul className="flex flex-wrap gap-[16px]">
+                        {/* Take price of first, assume all cost the same */}
+                        <MenuItemHeader name={'Dippsås'} price={menuGrouped.dip[0].price} />
+                        <ul className="flex flex-wrap gap-[16px] mt-[8px]">
                             {menuGrouped.dip.map((menuitem) => (
                                 <li
                                     key={menuitem.id}
@@ -72,13 +61,9 @@ export function MenuPage() {
                 )}
                 {menuGrouped.drink?.length > 0 && (
                     <div className={styles.menuItem}>
-                        <div className={`flex justify-between mb-[8px] ${styles.menuItemHeader}`}>
-                            <h2 className="">Dryck</h2>
-                            <div className={`flex-grow ${styles.menuItemBorder}`}></div>
-                            <div>{menuGrouped.drink[0].price} SEK</div>
-                            {/* Assume all cost the same */}
-                        </div>
-                        <ul className="flex flex-wrap gap-[16px]">
+                        {/* Take price of first, assume all cost the same */}
+                        <MenuItemHeader name={'Dryck'} price={menuGrouped.drink[0].price} />
+                        <ul className="flex flex-wrap gap-[16px] mt-[8px]">
                             {menuGrouped.drink.map((menuitem) => (
                                 <li
                                     key={menuitem.id}

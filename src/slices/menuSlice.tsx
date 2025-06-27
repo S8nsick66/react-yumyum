@@ -17,6 +17,7 @@ const initialState: MenuState = {
     isError: false
 };
 
+// Group items in separate arrays based on their type
 function groupItemsByType(menuitems: MenuType[]): MenuGroup {
     const menuGrouped: MenuGroup = Object.fromEntries(
         MENU_TYPES.map(type => [type, []])

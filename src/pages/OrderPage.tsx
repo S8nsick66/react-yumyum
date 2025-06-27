@@ -1,6 +1,6 @@
-import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { fetchOrder, getTimeRemaining } from "../slices/orderSlice";
 import { NewOrder } from "../components/Button/NewOrder";
 
@@ -16,11 +16,11 @@ export function OrderPage() {
     }, [dispatch, orderId]);
 
     if (isLoading) {
-        return <div className="loadingOverlay">Loading order...</div>;
+        return <div className="loadingOverlay">Loading...</div>;
     }
 
     if (isError || !order) {
-        // Bail here to avoid showing error between "New Order" click and redirect to menu
+        // Bail here to avoid showing error between "New Order" click and redirection to menu
         return null;
     }
 
@@ -29,7 +29,7 @@ export function OrderPage() {
     return (
         <>
             <div className="text-center flex-grow">
-                <img src="/images/box.png" width="390" height="362" />
+                <img src="/box.png" width="390" height="362" />
                 {remainingTime >= 0 ? (
                     <div className="px-[16px]">
                         <h2 className="text-32">Dina wontons tillagas!</h2>
