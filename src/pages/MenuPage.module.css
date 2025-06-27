@@ -1,10 +1,29 @@
 .menuWrapper {
     background: #605858;
-    color: #fff;
-    overflow-y: scroll;
+    color: #F4F3F1F0;
     max-height: 80vh;
 }
 
+.menuWrapper h1 {
+    font-size: 32px;
+    padding: 32px 16px 30px;
+}
+
+.menuItem {
+    padding: 16px;
+    border-top: 1px dotted #F1F0EC3D;
+}
+
+.menuItemMultiple {
+    color: #fff;
+    background: #837c7c;
+    box-shadow: 1px 1px 2px 0 #00000040;
+}
+
+.menuItemMultiple.selected {
+    background: #353131;
+}
+
 .selected {
-    background-color: rgba(255, 255, 255, 0.2);
+    background: #F1F0EC1F;
 }

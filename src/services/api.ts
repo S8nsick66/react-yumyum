@@ -7,6 +7,7 @@ import type {MenuType, OrderType, ReceiptType} from "../types/types";
 const myHeaders = new Headers();
 myHeaders.append("x-zocom", API_KEY);
 
+/*
 async function getKey() {
     const response = await fetch(API_BASE_URL + "keys", {
         method: "POST"
@@ -24,6 +25,7 @@ async function createTenant(name: string){
     const data = await response.json();
     return data.key;
 }
+ */
 
 interface ApiMenuResponse {
     items: MenuType[];
@@ -64,8 +66,8 @@ async function getReceipt(order: string): Promise<ReceiptType> {
 }
 
 export const api = {
-    getKey,
-    createTenant,
+    //getKey,
+    //createTenant,
     getMenu,
     sendOrder,
     getOrder,

@@ -39,22 +39,23 @@ export function CartPage() {
         ) : (
         <>
             <div className={style.cartWrapper}>
+                <div className="dottedBorder mb-[8px]"></div>
                 {cartExpanded.map((item) => (
-                    <div key={item.id} onClick={() => handleRemoveFromCart(item)}>
-                        <div>{item.name}</div>
+                    <div key={item.id} className="flex text-header py-[8px]" onClick={() => handleRemoveFromCart(item)}>
+                        <h2>{item.name}{item.type === 'dip' ? ' dip' : ''}</h2>
+                        <div className="flex-grow menuItemBorder"></div>
                         <div>{item.total} SEK</div>
                     </div>
                 ))}
+                <div className="dottedBorder mt-[8px]"></div>
+                <div className="dottedBorder"></div>
+                <div className="dottedBorder"></div>
             </div>
-            <div className="flex">
-                <div>
-                Totalt
-                </div>
-                <div>
-                    {cartState.totalCost} SEK
-                </div>
+            <div className={`flex justify-between align-start p-[16px] ${style.totalWrapper}`}>
+                <div className="text-header">Totalt</div>
+                <div>{cartState.totalCost} SEK</div>
             </div>
-            <button type="button" onClick={handleSendOrder}>Take my money!</button>
+            <button type="button" onClick={handleSendOrder} className={`text-2xl p-[24px]`}>Take my money!</button>
         </>
     )
 }

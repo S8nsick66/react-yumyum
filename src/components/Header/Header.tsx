@@ -23,7 +23,7 @@ export function Header() {
     return (
         <header className="flex justify-between items-baseline">
             {showLogo() && (
-                <NavLink to="/"><img src="/images/logo_white.svg" width="64" height="64" /></NavLink>
+                <img src="/images/logo_white.svg" width="64" height="64" />
             )}
             {showBackIcon() && (
                 <NavLink to="/" className={style.backLink}>

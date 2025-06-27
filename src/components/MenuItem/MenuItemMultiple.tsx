@@ -1,13 +1,9 @@
 import type { MenuType } from "../../types/types";
 
-interface MenuItemProps {
-    menuitem: MenuType;
-}
-
-export function MenuItemMultiple({ menuitem }: MenuItemProps){
+export function MenuItemMultiple({ menuitem }: { menuitem: MenuType }) {
     return (
-        <div className="menu-item">
-            <h2>{ menuitem.name }</h2>
-        </div>
+        <>
+            { menuitem.name }
+        </>
     );
 }

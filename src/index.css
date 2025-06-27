@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -15,6 +14,79 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 16px;
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+body.body-menu {
+  background: #8ed8bf url("/images/bg.png") no-repeat center center;
+  background-size: cover;
+}
+body.body-cart {
+  background: #eee;
+}
+body.body-order,
+body.body-receipt {
+  background: #605858;
+}
+
+#root, #root > main, main > div {
+  flex-grow: 1;
+  max-width: 390px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.fira-sans-regular {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.fira-sans-medium {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+.fira-sans-bold {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.text-32 {
+  font-size: 32px;
+}
+
+.text-26 {
+  font-size: 26px;
+}
+
+.text-22 {
+  font-size: 22px;
+}
+
+.text-15 {
+  font-size: 15px;
+}
+
+h2, .text-header {
+  font-size: 22px;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -24,70 +96,49 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  align-items: flex-start;
-  min-width: 320px;
-  min-height: 100vh;
-  padding: 16px;
-}
-
-body.body-menu {
-  background: #8ed8bf url("/images/bg.png") no-repeat center center;
-  background-size: cover;
-}
-
-body.body-cart {
-  background: #eee;
-}
-
-body.body-order {
-  background: #605858;
-}
-
-body.body-receipt {
-  background: #605858;
-}
-
-#root {
-  width: 100%
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
+  border-radius: 4px;
+  text-transform: uppercase;
+  color: #F4F3F1F0;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-size: 24px;
+  padding: 24px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+button.outline {
+  background: transparent;
+  border-width: 2px;
+  border-style: solid;
+  padding: 20px;
+}
+
+button a {
+    color: inherit;
+}
+
+.loadingOverlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: #1a1a1a;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.menuItemBorder {
+  margin-bottom: 8px;
+  margin-left: 20px;
+  margin-right: 10px;
+  border-bottom-width: 2px;
+  border-bottom-style: dotted;
+}
+
+.dottedBorder {
+  border-bottom: 1px dotted rgba(53, 49, 49, 0.24);
+  margin-bottom: 1px;
 }

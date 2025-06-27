@@ -33,62 +33,63 @@ export function MenuPage() {
 
     return (
         <>
-            <div className={styles.menuWrapper}>
-                <h1>Meny</h1>
-                <section className="products grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className={`overflow-y-scroll ${styles.menuWrapper}`}>
+                <h1 className="m-0">Meny</h1>
+                <section className="">
                     {menuGrouped.wonton.map((menuitem) => {
                         const quantity = quantityInCart(cartState.cart, menuitem.id);
                         return (
                             <div
                                 key={menuitem.id}
                                 onClick={() => handleAddToCart(menuitem)}
-                                className={quantity > 0 ? styles.selected : ''}
+                                className={`${styles.menuItem} ${quantity > 0 ? styles.selected : ''}`}
                             >
-                                <MenuItemSingle
-                                    menuitem={menuitem}
-                                    quantity={quantity}
-                                />
+                                <MenuItemSingle menuitem={menuitem} />
                             </div>
                         );
                     })}
                 </section>
                 {menuGrouped.dip?.length > 0 && (
-                    <>
-                        <div>
+                    <div className={styles.menuItem}>
+                        <div className={`flex justify-between mb-[8px] ${styles.menuItemHeader}`}>
                             <h2 className="">Dippsås</h2>
-                            <div>{menuGrouped.dip[0].price} SEK</div> {/* Assume all cost the same */}
+                            <div className={`flex-grow ${styles.menuItemBorder}`}></div>
+                            <div>{menuGrouped.dip[0].price} SEK</div>
+                            {/* Assume all cost the same */}
                         </div>
-                        <section className="flex flex-wrap gap-6">
+                        <ul className="flex flex-wrap gap-[16px]">
                             {menuGrouped.dip.map((menuitem) => (
-                                <div
+                                <li
                                     key={menuitem.id}
                                     onClick={() => handleAddToCart(menuitem)}
-                                    className={isInCart(cartState.cart, menuitem.id) ? styles.selected : ''}
+                                    className={`lowercase font-medium text-sm py-[8px] px-[12px] ${styles.menuItemMultiple} ${isInCart(cartState.cart, menuitem.id) ? styles.selected : ''}`}
                                 >
                                     <MenuItemMultiple key={menuitem.id} menuitem={menuitem}/>
-                                </div>
+                                </li>
                             ))}
-                        </section>
-                    </>
+                        </ul>
+                    </div>
                 )}
                 {menuGrouped.drink?.length > 0 && (
-                    <>
-                        <div>
+                    <div className={styles.menuItem}>
+                        <div className={`flex justify-between mb-[8px] ${styles.menuItemHeader}`}>
                             <h2 className="">Dryck</h2>
-                            <div>{menuGrouped.drink[0].price} SEK</div> {/* Assume all cost the same */}
+                            <div className={`flex-grow ${styles.menuItemBorder}`}></div>
+                            <div>{menuGrouped.drink[0].price} SEK</div>
+                            {/* Assume all cost the same */}
                         </div>
-                        <section className="flex flex-wrap gap-6">
+                        <ul className="flex flex-wrap gap-[16px]">
                             {menuGrouped.drink.map((menuitem) => (
-                                <div
+                                <li
                                     key={menuitem.id}
                                     onClick={() => handleAddToCart(menuitem)}
-                                    className={isInCart(cartState.cart, menuitem.id) ? styles.selected : ''}
+                                    className={`lowercase font-medium text-sm py-[8px] px-[12px] ${styles.menuItemMultiple} ${isInCart(cartState.cart, menuitem.id) ? styles.selected : ''}`}
                                 >
                                     <MenuItemMultiple key={menuitem.id} menuitem={menuitem}/>
-                                </div>
+                                </li>
                             ))}
-                        </section>
-                    </>
+                        </ul>
+                    </div>
                 )}
             </div>
         </>

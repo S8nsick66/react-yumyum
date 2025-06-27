@@ -64,6 +64,7 @@ export const getCartExpanded = createSelector(
                 cartExpanded[menuItem.type].push({
                     ...cartItem,
                     name: menuItem.name,
+                    type: menuItem.type,
                     price: menuItem.price ?? 0,
                     total: (menuItem.price ?? 0) * cartItem.quantity
                 });

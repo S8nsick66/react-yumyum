@@ -16,8 +16,11 @@ export const getOrderItems = (cart: CartItem[]): number[]  => {
 
 export const sendOrder = createAsyncThunk(
     'order/send',
-    async (cart: CartItem[]) => {
-        return await data.sendOrder(getOrderItems(cart));
+    async (cart: CartItem[], { dispatch }) => {
+        const cartOrder = getOrderItems(cart);
+        data.clearCart();
+        dispatch(clearCartState());
+        return await data.sendOrder(cartOrder);
     }
 );
 
@@ -29,17 +32,15 @@ export const fetchOrder = createAsyncThunk(
 );
 
 /*
-    * Starts a new order by clearing the cart, order, and receipt states and localStorage.
+    * Starts a new order by clearing the order and receipt states and localStorage.
  */
 export const startNewOrder = createAsyncThunk(
     'order/startNew',
     async (orderId: string, { dispatch }) => {
         data.clearOrder(orderId);
         data.clearReceipt(orderId);
-        data.clearCart();
         dispatch(clearOrderState());
         dispatch(clearReceiptState());
-        dispatch(clearCartState());
         // Give Redux time to clear the state before proceeding
         await new Promise((res) => setTimeout(res, 0));
     }

@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { startNewOrder } from "../slices/orderSlice";
 import { fetchReceipt } from "../slices/receiptSlice";
 import style from './ReceiptPage.module.css';
+import {NewOrder} from "../components/Button/NewOrder.tsx";
 
 export function ReceiptPage() {
     const { orderId } = useParams<{ orderId: string }>();
@@ -35,32 +35,24 @@ export function ReceiptPage() {
     }
 
     return (
-        <div className={style.receiptWrapper}>
-            <img src="/images/logo.svg"/>
-            <h2>Kvitto</h2>
-            <div>
-                #{ receipt.id }
+        <>
+            <div className={style.receiptWrapper}>
+                <img src="/images/logo.svg"/>
+                <h2>Kvitto</h2>
+                <div>
+                    #{ receipt.id }
+                </div>
+                <div>
+                    {receipt.items.map((item) => (
+                        <div key={item.id}>
+                            <div>{item.name}</div>
+                            <div>{item.price} SEK</div>
+                            <div>{item.quantity}</div>
+                        </div>
+                    ))}
+                </div>
             </div>
-            <div>
-                {receipt.items.map((item) => (
-                    <div key={item.id}>
-                        <div>{item.name}</div>
-                        <div>{item.price} SEK</div>
-                        <div>{item.quantity}</div>
-                    </div>
-                ))}
-            </div>
-            <a className="button" onClick={() => {
-                dispatch(
-                    // Clear the current order.
-                    // This will reset the cart and order state,
-                    // triggering useEffect above
-                    // to navigate back to the menu
-                    startNewOrder(receipt.id)
-                )
-            }}>
-                Gör en ny beställning
-            </a>
-        </div>
+            <NewOrder orderId={receipt.id} />
+        </>
     )
 }

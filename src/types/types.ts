@@ -47,6 +47,7 @@ export interface CartItem {
 
 export type ExpandedCartItem = CartItem & {
     name: string;
+    type: MenuCategory;
     price: number;
     total: number;
 };
